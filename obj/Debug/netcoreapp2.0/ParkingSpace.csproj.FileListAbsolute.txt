@@ -1,0 +1,11 @@
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\bin\Debug\netcoreapp2.0\ParkingSpace.deps.json
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\bin\Debug\netcoreapp2.0\ParkingSpace.runtimeconfig.json
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\bin\Debug\netcoreapp2.0\ParkingSpace.runtimeconfig.dev.json
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\bin\Debug\netcoreapp2.0\ParkingSpace.dll
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\bin\Debug\netcoreapp2.0\ParkingSpace.pdb
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.csprojResolveAssemblyReference.cache
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.csproj.CoreCompileInputs.cache
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.AssemblyInfoInputs.cache
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.AssemblyInfo.cs
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.dll
+C:\Users\Felix Cukerman\Documents\GitProject\ParkingSpace\obj\Debug\netcoreapp2.0\ParkingSpace.pdb
