@@ -5,9 +5,10 @@ namespace ParkingSpace
 {
     static class Menu
     {
+        static Parking park = Parking.Create; 
         private static int index = 0;
   
-        public static string drawMenu(List<string> items)
+        private static string drawMenu(List<string> items)
         {
             for (int i = 0; i < items.Count; i++)
             {
@@ -54,6 +55,96 @@ namespace ParkingSpace
  
             Console.Clear();
             return "";
+        }
+
+        public static void Start()
+        {
+            List<string> menuItems = new List<string>() {
+                "Add new car",
+                "Remove car",
+                "Show car",
+                "Show pricelist",
+                "Show current profit",
+                "Remaining count",
+                "Show all transactions",
+                "Preview minute transactions",
+                "Exit"
+            };
+ 
+            Console.CursorVisible = false;
+            while (true)
+            {
+                string selectedMenuItem = Menu.drawMenu(menuItems);
+
+                switch(selectedMenuItem)
+                {
+                    case "Add new car":
+                    {
+                        Console.Clear();
+                        park.AddCar();
+                        break;
+                    }
+                    
+                    case "Remove car":
+                    {
+                        Console.Clear();
+                        park.RemoveCar();
+                        break;
+                    }
+
+                    case "Show car":
+                    {
+                        Console.Clear();
+                        park.ShowCar();
+                        break;
+                    }
+
+                    case "Show pricelist":
+                    {
+                        Console.Clear();
+                        park.ShowPrice();
+                        break;
+                    }
+
+                    case "Show current profit":
+                    {
+                        Console.Clear();
+                        park.ShowProfit();
+                        break;
+                    }
+
+                    case "Show all transactions":
+                    {
+                        Console.Clear();
+                        park.ShowAllTransactions();
+                        break;
+                    }
+
+                    case "Preview minute transactions":
+                    {
+                        Console.Clear();
+                        park.PrevMinuteTransactions();
+                        break;
+                    }
+
+                    case "Remaining count":
+                    {
+                        Console.Clear();
+                        park.RemainingCount();
+                        break;
+                    }
+                }
+
+                if (selectedMenuItem == "one")
+                {
+                    Console.Clear();
+                    Console.WriteLine("HELLO one!"); Console.Read();
+                }
+                else if (selectedMenuItem == "Exit")
+                {
+                    Environment.Exit(0);
+                }
+            }
         }
     }
 }

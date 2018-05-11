@@ -55,6 +55,8 @@ namespace ParkingSpace
             Console.WriteLine("Осталось мест      : {0}", parkingSpace - area.Count);
             Console.WriteLine("Занято мест        : {0}", area.Count);
             Console.ForegroundColor = ConsoleColor.Gray;
+
+            Pause();
         }
 
         public void AddCar()
@@ -96,10 +98,13 @@ namespace ParkingSpace
             }
         }
 
-        public void RemoveCar(int id)
+        public void RemoveCar()
         {
             try
             {
+                Console.Write("Введите id машины: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
                 if(area[id - 1].Cash < 0)
                     throw new PayException();
 
@@ -117,8 +122,16 @@ namespace ParkingSpace
             }
             catch(PayException ex)
             {
+                Console.WriteLine(new string('-', 48));
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(new string('-', 48));
+                Console.ForegroundColor = ConsoleColor.Red;
+                System.Console.WriteLine("Exception: {0}", ex.Message);
                 Console.ForegroundColor = ConsoleColor.Gray;
             }
             finally
@@ -180,18 +193,26 @@ namespace ParkingSpace
 
         public void ShowPrice()
         {
+            Console.Clear();
+
             foreach (var v in Settings.priceList)
             {
                 Console.WriteLine(v);
             }
+
+            Pause();
         }
 
         public void ShowProfit()
         {
+            Console.Clear();
+
             System.Console.WriteLine(new string('-', 38));
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Current profit: {0}$", Math.Round(Profit, 2));
             Console.ForegroundColor = ConsoleColor.Gray;
+
+            Pause();
         }
 
         private void WriteToLog()
@@ -230,6 +251,10 @@ namespace ParkingSpace
             catch (Exception)
             {
                 transaction = new List<Transaction>();
+            }
+            finally
+            {
+                Pause();
             }
         }
 
@@ -271,6 +296,10 @@ namespace ParkingSpace
             catch (Exception)
             {
                 transaction = new List<Transaction>();
+            }
+            finally
+            {
+                Pause();
             }
         }
 
