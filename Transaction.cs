@@ -14,19 +14,19 @@ namespace ParkingSpace
             get { return date; }
         }
 
-        readonly uint id;
-        public uint Id
+        readonly int id;
+        public int Id
         {
             get { return id; }
         }
 
-        readonly uint payment;
-        public uint Payment
+        readonly int payment;
+        public int Payment
         {
             get { return payment; }
         }
 
-        public Transaction(uint id, uint payment)
+        public Transaction(int id, int payment)
         {
             this.date = DateTime.Now;
             this.id = Id;

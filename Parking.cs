@@ -209,9 +209,12 @@ namespace ParkingSpace
         {
             return Task.Run(() =>
             {
+                int price = Settings.priceList[(CarType)area[id].Category];
+
                 Thread.Sleep((int)timeout);
-                Profit += Settings.priceList[(CarType)area[id].Category];
-                return area[id].Cash - Settings.priceList[(CarType)area[id].Category];
+                Profit += price;
+                transaction.Add(new Transaction(id, price));
+                return area[id].Cash - price;
             });
         }
 
@@ -219,9 +222,12 @@ namespace ParkingSpace
         {
             return Task.Run(() =>
             {
+                int price = Settings.priceList[(CarType)area[id].Category];
+
                 Thread.Sleep((int)timeout);
-                Profit += Settings.priceList[(CarType)area[id].Category] * fine;
-                return area[id].Cash - (Settings.priceList[(CarType)area[id].Category] * fine);
+                Profit += price * fine;
+                transaction.Add(new Transaction(id, price));
+                return area[id].Cash - (price * fine);
             });
         }
     }
