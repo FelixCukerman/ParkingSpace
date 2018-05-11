@@ -46,5 +46,37 @@ namespace ParkingSpace
             Console.WriteLine("Занято мест        : {0}", area.Count);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
+
+        public async Task Controller(int id)
+        {
+
+            while(true)
+            {
+                if (area[id].Cash < 0)
+                    area[id].Cash = await Fine(id);
+                else
+                    area[id].Cash = await Payment(id);
+            }
+        }
+
+        Task<double> Payment(int id)
+        {
+            return Task.Run(() =>
+            {
+                Thread.Sleep((int)timeout);
+                Profit += Settings.priceList[(CarType)area[id].Category];
+                return area[id].Cash - Settings.priceList[(CarType)area[id].Category];
+            });
+        }
+
+        Task<double> Fine(int id)
+        {
+            return Task.Run(() =>
+            {
+                Thread.Sleep((int)timeout);
+                Profit += Settings.priceList[(CarType)area[id].Category] * fine;
+                return area[id].Cash - (Settings.priceList[(CarType)area[id].Category] * fine);
+            });
+        }
     }
 }
