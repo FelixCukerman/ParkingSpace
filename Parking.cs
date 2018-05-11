@@ -37,5 +37,14 @@ namespace ParkingSpace
                 return lazy.Value;
             }
         }
+
+        public void RemainingCount()
+        {
+            Console.WriteLine(new string('-', 38));
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Осталось мест      : {0}", parkingSpace - area.Count);
+            Console.WriteLine("Занято мест        : {0}", area.Count);
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
     }
 }
