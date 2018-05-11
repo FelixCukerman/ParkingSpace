@@ -40,7 +40,7 @@ namespace ParkingSpace
 
         static void Pause()
         {
-                Console.WriteLine(new string('-', 48));
+                Console.WriteLine(new string('-', 38));
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 Console.Write("Press any key...");
                 Console.ReadKey();
