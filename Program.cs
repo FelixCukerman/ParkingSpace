@@ -6,9 +6,16 @@ namespace ParkingSpace
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Parking park = Parking.Create;
 
-            Car.ShowTypeCar();
+            while(true)
+            {
+                park.AddCar();
+                park.ShowCar();
+                park.ShowProfit();
+                park.RemainingCount();
+                park.AddCash();
+            }
         }
     }
 }
