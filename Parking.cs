@@ -47,6 +47,50 @@ namespace ParkingSpace
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        public void AddCar()
+        {
+            Console.WriteLine(new string('-', 38));
+            Console.WriteLine("Определите тип автомобиля: ");
+            Car.ShowTypeCar();
+
+            Random r = new Random(DateTime.Now.Millisecond);
+            double money = r.Next(70, 200);
+
+            try
+            {
+                if (currentId > parkingSpace)
+                    throw new SpaceOverflowException();
+
+                string category = Console.ReadLine();
+                area.Add(new Car(currentId, money, category));
+                Task t = Controller(currentId-1);
+                currentId++;
+            }
+            catch(ArgumentException)
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Такой тип транспорта недопустим!");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            catch(SpaceOverflowException ex)
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            finally
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("Press any key...");
+                Console.ReadKey();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
+
         public async Task Controller(int id)
         {
 
