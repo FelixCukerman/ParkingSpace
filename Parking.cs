@@ -188,6 +188,7 @@ namespace ParkingSpace
 
         public void ShowProfit()
         {
+            System.Console.WriteLine(new string('-', 38));
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("Current profit: {0}$", Math.Round(Profit, 2));
             Console.ForegroundColor = ConsoleColor.Gray;
