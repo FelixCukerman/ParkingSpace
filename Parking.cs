@@ -196,6 +196,13 @@ namespace ParkingSpace
             }
         }
 
+        public void ShowProfit()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Current profit: {0}$", Math.Round(Profit, 2));
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
         public async Task Controller(int id)
         {
 
