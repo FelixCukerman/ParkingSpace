@@ -127,6 +127,29 @@ namespace ParkingSpace
             }
         }
 
+        void AbstractShow(IEnumerable<Car> carList)
+        {
+            int i = -1;
+            var enumerator = carList.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Id        : {0}", enumerator.Current.Id);
+                Console.WriteLine("Current   : {0}", enumerator.Current.Category);
+                Console.WriteLine("Cash      : {0}$", Math.Round(enumerator.Current.Cash, 2));
+                Console.ForegroundColor = ConsoleColor.Gray;
+                i++;
+            }
+            if (i == -1)
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Парковка пуста!");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
+
         public async Task Controller(int id)
         {
 
