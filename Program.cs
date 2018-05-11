@@ -14,6 +14,7 @@ namespace ParkingSpace
                 park.ShowCar();
                 park.ShowProfit();
                 park.RemainingCount();
+                park.PrevMinuteTransactions();
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingSpace
 {
+    [Serializable]
     class Transaction
     {
         readonly DateTime date;
@@ -29,8 +30,8 @@ namespace ParkingSpace
         public Transaction(int id, int payment)
         {
             this.date = DateTime.Now;
-            this.id = Id;
-            this.payment = Payment;
+            this.id = id;
+            this.payment = payment;
         }
     }
 }

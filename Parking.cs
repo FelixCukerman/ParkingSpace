@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ParkingSpace
 {
     class Parking
     {
-        private static readonly Lazy<Parking> lazy = new Lazy<Parking>(() => new Parking());
-
+        private static readonly Lazy<Parking> lazy = new Lazy<Parking>(() => new Parking());        
         public static int currentId = 1;
         private double Profit { get; set; }
         private List<Car> area;
         private List<Transaction> transaction;
-
         private uint timeout;
         private int parkingSpace;
         private double fine;
@@ -194,6 +194,86 @@ namespace ParkingSpace
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        private void WriteToLog()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream("transaction.log", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, transaction);
+            }
+        }
+
+
+
+        public void ShowAllTransactions()
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            transaction = new List<Transaction>();
+
+            try
+            {
+                using (FileStream fs = new FileStream("transaction.log", FileMode.OpenOrCreate))
+                {
+                    transaction = (List<Transaction>)formatter.Deserialize(fs);
+
+                    foreach(var trs in transaction)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(new string('-', 38));
+                        Console.WriteLine("Id      : {0}", trs.Id);
+                        Console.WriteLine("Date    : {0}", trs.Date);
+                        Console.WriteLine("Payment : {0}", trs.Payment);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                transaction = new List<Transaction>();
+            }
+        }
+
+        public void PrevMinuteTransactions()
+        {
+            Console.Clear();
+
+            BinaryFormatter formatter = new BinaryFormatter();
+            List<Transaction> transaction = new List<Transaction>();
+
+            try
+            {
+                using (FileStream fs = new FileStream("transaction.log", FileMode.OpenOrCreate))
+                {
+                    transaction = (List<Transaction>)formatter.Deserialize(fs);
+
+                    var query =
+                        from trs in transaction
+                        where ((DateTime.Now.Second - trs.Date.Second) <= 60 || (DateTime.Now.Second - trs.Date.Second) >= 0)
+                        select new
+                        {
+                            Id = trs.Id,
+                            Date = trs.Date,
+                            Payment = trs.Payment
+                        };
+                    
+                    Console.WriteLine("|Сума транзакций за последнюю минуту |");
+                    foreach(var item in query)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(new string('-', 38));
+                        Console.WriteLine("Id      : {0}", item.Id);
+                        Console.WriteLine("Date    : {0}", item.Date);
+                        Console.WriteLine("Payment : {0}", item.Payment);
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                transaction = new List<Transaction>();
+            }
+        }
+
         public async Task Controller(int id)
         {
 
@@ -215,6 +295,7 @@ namespace ParkingSpace
                 Thread.Sleep((int)timeout);
                 Profit += price;
                 transaction.Add(new Transaction(id, price));
+                WriteToLog();
                 return area[id].Cash - price;
             });
         }
@@ -228,6 +309,7 @@ namespace ParkingSpace
                 Thread.Sleep((int)timeout);
                 Profit += price * fine;
                 transaction.Add(new Transaction(id, price));
+                WriteToLog();
                 return area[id].Cash - (price * fine);
             });
         }
