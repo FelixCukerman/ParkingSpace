@@ -303,7 +303,7 @@ namespace ParkingSpace
             }
         }
 
-        public async Task Controller(int id)
+        private async Task Controller(int id)
         {
 
             while(true)

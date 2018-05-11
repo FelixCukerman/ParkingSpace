@@ -63,6 +63,7 @@ namespace ParkingSpace
                 "Add new car",
                 "Remove car",
                 "Show car",
+                "Add cash to car",
                 "Show pricelist",
                 "Show current profit",
                 "Remaining count",
@@ -133,16 +134,19 @@ namespace ParkingSpace
                         park.RemainingCount();
                         break;
                     }
-                }
 
-                if (selectedMenuItem == "one")
-                {
-                    Console.Clear();
-                    Console.WriteLine("HELLO one!"); Console.Read();
-                }
-                else if (selectedMenuItem == "Exit")
-                {
-                    Environment.Exit(0);
+                    case "Add cash to car":
+                    {
+                        Console.Clear();
+                        park.AddCash();
+                        break;
+                    }
+
+                    case "Exit":
+                    {
+                        Environment.Exit(0);
+                        break;
+                    }
                 }
             }
         }

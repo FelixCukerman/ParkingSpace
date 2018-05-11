@@ -38,7 +38,7 @@ namespace ParkingSpace
 
         public void AddCash()
         {
-            Console.WriteLine("Введите суму пополнения: ");
+            Console.Write("Введите суму пополнения: ");
             double cash = Convert.ToInt32(Console.ReadLine());
 
             this.cash += cash;
