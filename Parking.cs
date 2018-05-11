@@ -91,6 +91,42 @@ namespace ParkingSpace
             }
         }
 
+        public void RemoveCar(int id)
+        {
+            try
+            {
+                if(area[id - 1].Cash < 0)
+                    throw new PayException();
+
+                area.RemoveAt(id - 1);
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Машина с id{0} изгнана!", id);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                Console.WriteLine(new string('-', 48));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Невозможно удалить машину за пределами парковки!");
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            catch(PayException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            finally
+            {
+                Console.WriteLine(new string('-', 48));
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("Press any key...");
+                Console.ReadKey();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
+
         public async Task Controller(int id)
         {
 
