@@ -188,6 +188,14 @@ namespace ParkingSpace
             }
         }
 
+        public void ShowPrice()
+        {
+            foreach (var v in Settings.priceList)
+            {
+                Console.WriteLine(v);
+            }
+        }
+
         public async Task Controller(int id)
         {
 
