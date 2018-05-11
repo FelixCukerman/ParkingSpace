@@ -161,6 +161,33 @@ namespace ParkingSpace
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
+        public void AddCash()
+        {
+            Console.Write("Введите id машины: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            try
+            {
+                area[id - 1].AddCash();
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+                Console.WriteLine(new string('-', 38));
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Машины с id:{0} не существует", id);
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+            finally
+            {
+                Console.WriteLine(new string('-', 48));
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("Press any key...");
+                Console.ReadKey();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Gray;
+            }
+        }
+
         public async Task Controller(int id)
         {
 
