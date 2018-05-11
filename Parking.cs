@@ -150,6 +150,17 @@ namespace ParkingSpace
             }
         }
 
+        public void ShowCar()
+        {
+            this.AbstractShow(area);
+            Console.WriteLine(new string('-', 38));
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.Write("Press any key...");
+            Console.ReadKey();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
         public async Task Controller(int id)
         {
 
