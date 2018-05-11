@@ -9,7 +9,7 @@ namespace ParkingSpace
         {
             while(true)
             {
-                ParkingSpace.Menu.Start();
+                Menu.Start();
             }
         }
     }
