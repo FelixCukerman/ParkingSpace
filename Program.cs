@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ParkingSpace
 {
@@ -6,7 +7,10 @@ namespace ParkingSpace
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            while(true)
+            {
+                Menu.Start();
+            }
         }
     }
 }
