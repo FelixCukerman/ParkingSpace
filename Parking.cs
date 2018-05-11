@@ -38,6 +38,16 @@ namespace ParkingSpace
             }
         }
 
+        static void Pause()
+        {
+                Console.WriteLine(new string('-', 48));
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.Write("Press any key...");
+                Console.ReadKey();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
         public void RemainingCount()
         {
             Console.WriteLine(new string('-', 38));
@@ -82,12 +92,7 @@ namespace ParkingSpace
             }
             finally
             {
-                Console.WriteLine(new string('-', 38));
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("Press any key...");
-                Console.ReadKey();
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Pause();
             }
         }
 
@@ -118,12 +123,7 @@ namespace ParkingSpace
             }
             finally
             {
-                Console.WriteLine(new string('-', 48));
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("Press any key...");
-                Console.ReadKey();
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Pause();
             }
         }
 
@@ -153,12 +153,7 @@ namespace ParkingSpace
         public void ShowCar()
         {
             this.AbstractShow(area);
-            Console.WriteLine(new string('-', 38));
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.Write("Press any key...");
-            Console.ReadKey();
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Pause();
         }
 
         public void AddCash()
@@ -179,12 +174,7 @@ namespace ParkingSpace
             }
             finally
             {
-                Console.WriteLine(new string('-', 48));
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.Write("Press any key...");
-                Console.ReadKey();
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Gray;
+                Pause();
             }
         }
 
