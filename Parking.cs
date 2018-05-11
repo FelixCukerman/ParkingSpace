@@ -11,7 +11,7 @@ namespace ParkingSpace
 {
     class Parking
     {
-        private static readonly Lazy<Parking> lazy = new Lazy<Parking>(() => new Parking());        
+        private static readonly Lazy<Parking> lazy = new Lazy<Parking>(() => new Parking());
         public static int currentId = 1;
         private double Profit { get; set; }
         private List<Car> area;
@@ -248,7 +248,7 @@ namespace ParkingSpace
 
                     var query =
                         from trs in transaction
-                        where ((DateTime.Now.Second - trs.Date.Second) <= 60 || (DateTime.Now.Second - trs.Date.Second) >= 0)
+                        where (trs.Date.Minute >= (DateTime.Now.Minute - 1))
                         select new
                         {
                             Id = trs.Id,

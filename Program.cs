@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ParkingSpace
 {
@@ -6,15 +7,25 @@ namespace ParkingSpace
     {
         static void Main(string[] args)
         {
-            Parking park = Parking.Create;
-
-            while(true)
+            List<string> menuItems = new List<string>() {
+                "one",
+                "two",
+                "Exit"
+            };
+ 
+            Console.CursorVisible = false;
+            while (true)
             {
-                park.AddCar();
-                park.ShowCar();
-                park.ShowProfit();
-                park.RemainingCount();
-                park.PrevMinuteTransactions();
+                string selectedMenuItem = Menu.drawMenu(menuItems);
+                if (selectedMenuItem == "one")
+                {
+                    Console.Clear();
+                    Console.WriteLine("HELLO one!"); Console.Read();
+                }
+                else if (selectedMenuItem == "Exit")
+                {
+                    Environment.Exit(0);
+                }
             }
         }
     }
